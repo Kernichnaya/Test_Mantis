@@ -19,14 +19,14 @@ class Application:
             self.wd = webdriver.Ie()
         else:
             raise ValueError(f"Unrecognized browser {browser}")
+        self.config = config
+        self.base_url = config['web']['baseUrl']
         self.session = SessionHelper(self)
         self.project = ProjectHelper(self)
         self.james = JamesHelper(self)
         self.mail = MailHelper(self)
         self.signup = SignupHelper(self)
         self.soap = SoapHelper(self)
-        self.config = config
-        self.base_url = config['web']['baseUrl']
 
     def open_home_page(self):
         wd = self.wd
