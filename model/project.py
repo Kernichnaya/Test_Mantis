@@ -5,8 +5,8 @@ from sys import maxsize
 
 class Project:
 
-    status_variables = ['в разработке', 'выпущен', 'стабильный', 'устарел']
-    view_state_variables = ['публичный', 'приватный']
+    status_variables = ['development', 'release', 'stable', 'obsolete']
+    view_state_variables = ['public', 'private']
 
     def __init__(self, id=None, name=None, status=None, view_state=None, description=None):
         self.id = id
@@ -40,11 +40,11 @@ class Project:
 
     @staticmethod
     def generate_random_status():
-        return random.choice(['в разработке', 'выпущен', 'стабильный', 'устарел'])
+        return random.choice(['development', 'release', 'stable', 'obsolete'])
 
     @staticmethod
     def generate_random_view_state():
-        return random.choice(['публичный', 'приватный'])
+        return random.choice(['public', 'private'])
 
     @staticmethod
     def generate_random_description(maxlen=10):

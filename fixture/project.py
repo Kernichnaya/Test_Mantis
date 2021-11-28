@@ -16,8 +16,8 @@ class ProjectHelper:
 
     def open_manage_project_page(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//a[contains(@href, '/mantisbt-2.25.2/manage_overview_page.php')]").click()
-        wd.find_element_by_xpath("//a[contains(@href, '/mantisbt-2.25.2/manage_proj_page.php')]").click()
+        wd.find_element_by_xpath("//a[contains(@href, 'manage_overview_page.php')]").click()
+        wd.find_element_by_xpath("//a[contains(@href, 'manage_proj_page.php')]").click()
 
     def create_new_project(self, project: Project):
         wd = self.app.wd
@@ -26,7 +26,7 @@ class ProjectHelper:
         wd.find_element_by_xpath('//button[@type="submit"]').click()
         WebDriverWait(wd, 5).until(EC.presence_of_element_located((By.ID, 'project-name')))
         self.fill_new_project_form(project)
-        wd.find_element_by_css_selector('input[value="Добавить проект"]').click()
+        wd.find_element_by_css_selector('input[value="Add Project"]').click()
         if wd.find_elements_by_xpath('//div[@class="alert alert-danger"]'):
            raise Exception(f"Проект с названием {project.name} уже существует")
         self.open_manage_project_page()
@@ -67,7 +67,7 @@ class ProjectHelper:
         wd = self.app.wd
         self.open_manage_project_page()
         wd.find_element_by_xpath(f'//a[contains(@href, "manage_proj_edit_page.php?project_id={project_id}")]').click()
-        wd.find_element_by_css_selector('input[value="Удалить проект"]').click()
-        wd.find_element_by_css_selector('input[value="Удалить проект"]').click() # confirm the operation on the yellow screen
+        wd.find_element_by_css_selector('input[value="Delete Project"]').click()
+        wd.find_element_by_css_selector('input[value="Delete Project"]').click() # confirm the operation on the yellow screen
         self.open_manage_project_page()
         self.project_cache = None

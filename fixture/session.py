@@ -30,7 +30,7 @@ class SessionHelper:
 
     def is_logged_in(self):
         wd = self.app.wd
-        return wd.find_elements_by_xpath("//a[contains(@href, '/mantisbt-2.25.2/logout_page.php')]")
+        return wd.find_elements_by_xpath("//a[contains(@href, 'logout_page.php')]")
 
     def is_logged_in_as(self, username):
         wd = self.app.wd
@@ -43,7 +43,7 @@ class SessionHelper:
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_css_selector('span[class="user-info"]').click()
-        wd.find_element_by_xpath("//a[contains(text(), 'Выход')]").click()
+        wd.find_element_by_xpath("//a[contains(text(), 'Logout')]").click()
         WebDriverWait(wd, 5).until(EC.visibility_of_element_located((By.NAME, "username")))
 
     def ensure_logout(self):
